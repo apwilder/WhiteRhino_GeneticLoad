@@ -1,0 +1,105 @@
+//conda activate vep
+//slim -g=1.1 Rhino_4server_supp.slim
+
+// set up a simple neutral simulation
+initialize() {
+	initializeSLiMModelType("nonWF");
+	initializeMutationRate(0);
+	
+	// m4 mutation type: neutral
+	//Hess
+	initializeMutationType("m1", 0.0330204, "f", -0.002);
+	initializeMutationType("m2", 0.0619497, "f", -0.001);
+	initializeMutationType("m3", 0.292893, "f", -0.0001);
+	initializeMutationType("m4", 0.5, "f", 0);
+	//Pieschl	
+   //     initializeMutationType("m1", 0.0330204, "f", -0.072);
+   //     initializeMutationType("m2", 0.0619497, "f", -0.032);
+   //     initializeMutationType("m3", 0.292893, "f", -0.024);
+   //     initializeMutationType("m4", 0.5, "f", 0);
+
+	// g1 genomic element type
+	initializeGenomicElementType("g1", c(m1,m2,m3,m4), c(1,1,1,1));
+	
+	//  chromosome 
+	initializeGenomicElement(g1, 0, 2141426881);
+	initializeRecombinationRate(c(1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5,1e-08,0.5),c(79733106,79733107,158313767,158313768,226740340,226740341,292755659,292755660,355944575,355944576,417228719,417228720,474902875,474902876,520949784,520949785,565123955,565123956,604300066,604300067,641124665,641124666,676677521,676677522,711894771,711894772,746321276,746321277,780530563,780530564,813797905,813797906,846849893,846849894,878765615,878765616,910300252,910300253,940615038,940615039,970191891,970191892,999634707,999634708,1029030193,1029030194,1057637508,1057637509,1085415872,1085415873,1112892808,1112892809,1139170535,1139170536,1164619383,1164619384,1189443846,1189443847,1214448801,1214448802,1238620009,1238620010,1262821937,1262821938,1286523234,1286523235,1309448271,1309448272,1332389044,1332389045,1354769582,1354769583,1375565045,1375565046,1396305374,1396305375,1417158360,1417158361,1437041092,1437041093,1456731651,1456731652,1476174231,1476174232,1495176272,1495176273,1513749337,1513749338,1532125689,1532125690,1550224758,1550224759,1568202443,1568202444,1586072464,1586072465,1603263232,1603263233,1619801992,1619801993,1636140428,1636140429,1652534369,1652534370,1667990132,1667990133,1682535725,1682535726,1697067796,1697067797,1711553390,1711553391,1725997783,1725997784,1740138392,1740138393,1753817243,1753817244,1767463404,1767463405,1780034358,1780034359,1792393786,1792393787,1804582670,1804582671,1816551148,1816551149,1828402478,1828402479,1840013163,1840013164,1851678223,1851678224,1862913665,1862913666,1873799680,1873799681,1884300056,1884300057,1894875804,1894875805,1904930700,1904930701,1915027043,1915027044,1924799346,1924799347,1934633037,1934633038,1944233637,1944233638,1953884715,1953884716,1962748202,1962748203,1971681891,1971681892,1979026115,1979026116,1985012490,1985012491,1990943487,1990943488,1996925953,1996925954,2002568533,2002568534,2008148382,2008148383,2013527992,2013527993,2018893855,2018893856,2023708895,2023708896,2028217712,2028217713,2032552284,2032552285,2036792905,2036792906,2040891080,2040891081,2044914399,2044914400,2048843846,2048843847,2052869527,2052869528,2056652144,2056652145,2060268193,2060268194,2063824571,2063824572,2067245707,2067245708,2070648957,2070648958,2073907943,2073907944,2077067068,2077067069,2080283583,2080283584,2083405032,2083405033,2086519402,2086519403,2089585134,2089585135,2092613097,2092613098,2095439832,2095439833,2098182288,2098182289,2100840257,2100840258,2103513070,2103513071,2105957143,2105957144,2108388003,2108388004,2110690391,2110690392,2112854602,2112854603,2114855004,2114855005,2116715476,2116715477,2118684122,2118684123,2120648914,2120648915,2122457212,2122457213,2124287106,2124287107,2126080079,2126080080,2127874725,2127874726,2129484784,2129484785,2131081089,2131081090,2132627628,2132627629,2134080426,2134080427,2135540103,2135540104,2136882825,2136882826,2138151787,2138151788,2139321135,2139321136,2140361114,2140361115,2141426880,2141426881)); //space between chromosomes
+	defineConstant("simID", getSeed());
+	//defineConstant("g", 1.0);
+}
+
+
+// load in the cold storage population
+1 first() {
+	sim.readFromPopulationFile("~NWR_RS2MODHInuet_AllChr_polym_ssm4_Henns_n8.txt");
+
+	sim.addSubpop("p2", 0);
+}
+
+// in ticks 2:11, calculate the new population size
+// note that this is substantially influenced by integer roundoff
+2:11 first() {
+	newSize = asInteger(round(p2.individualCount * g));
+	p2.setValue("K", newSize);
+	catn(community.tick + ": " + p2.individualCount + " will grow to " + newSize);
+}
+
+// reproduce the cold storage pop into live rhinos
+1 reproduction(p1) {
+	p2.addCloned(individual);
+}
+
+// reproduce the living rhinos by making K new juveniles
+2: reproduction(p2) {
+	K = p2.getValue("K")-1;//with clone supplementation
+	//K = p2.getValue("K");//without
+	
+	// parents are chosen proportional to fitness
+	inds = p2.individuals;
+	fitness = p2.cachedFitness(NULL);
+	catn("fitness = " + fitness);		// print the vector of fitness values; they are VERY small!
+	het=calcHeterozygosity(p2.genomes);
+	catn("heterozygosity = " + het);		
+	ib=calcInbreedingLoad(p2.genomes);
+	catn("inbreeding load = " + ib);	
+	
+	parents1 = sample(inds, K, replace=T, weights=fitness);
+	parents2 = sample(inds, K, replace=T, weights=fitness);
+	
+	for (i in seqLen(K))
+		p2.addCrossed(parents1[i], parents2[i]);
+	
+	// in tick 5, we will additionally add one clone from cold
+	// storage to see what happens; this is just a proof of concept,
+	// you could do whatever you want in this vein
+	//if (community.tick == 5)
+	//{
+		catn(community.tick + ": cloning from cold storage");
+		numberToAdd = 1;
+		coldStorageIndividuals = sample(p1.individuals, 1, replace=F);
+		for (ind in coldStorageIndividuals)
+			p2.addCloned(ind);
+	//}
+	
+	// we have finished all reproduction in a single call
+	// ("big bang" reproduction), so don't run again this tick
+	self.active = 0;
+}
+
+survival(p1) {
+	// everybody in the cold storage lives forever
+	return T;
+}
+survival(p2) {
+	// survival is independent of fitness; parents die, offspring live
+	// this implements non-overlapping generations
+	return (individual.age == 0);
+}
+
+// output: at the end of tick 1 we have the 9 clones, and we log
+// output starting at the end of tick 2, after the first round of
+// (non-clonal) reproduction
+2:11 late() {
+	//sim.outputFull(paste(c('Pieschl/RS2MODHInuet_AllChr_polym_ssm4_Pieschls_11grth_gen', community.tick, '_',simID,'_slimout.txt'),sep=''));
+	sim.outputFull(paste(c('NWR_RS2MODHInuet_AllChr_polym_ssm4_Henns_',g,'grth_gen', community.tick, '_supp_',simID,'_slimout.txt'),sep=''));
+}
